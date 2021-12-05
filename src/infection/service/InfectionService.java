@@ -7,6 +7,20 @@ import infection.data.ImmunityCell;
 
 public class InfectionService {
 
+    private static final float INFECTION_PROBABILITY = 0.5F;
+    private static InfectionService instance;
+
+    private InfectionService() {
+
+    }
+
+    public static InfectionService getInstance() {
+        if (instance == null) {
+            instance = new InfectionService();
+        }
+        return instance;
+    }
+
     private Cell[][] matrix;
 
     public void init(int size) {
@@ -48,14 +62,15 @@ public class InfectionService {
 
                 cell.decreaseCounter();
 
-                if (cell.getCounter() <= 0) {
-                    cell = this.migrateToAnotherCell(cell);
-                }
-                matrix[i][j] = cell;
-
                 if (!copy[i][j].getClass().equals(cell.getClass())) {
                     continue;
                 }
+
+                if (cell.getCounter() <= 0) {
+                    matrix[i][j] = this.migrateToAnotherCell(cell);
+                    continue;
+                }
+                matrix[i][j] = cell;
 
                 if (!(cell instanceof InfectedCell)) {
                     continue;
@@ -119,7 +134,7 @@ public class InfectionService {
         if (cell instanceof HealthyCell) {
             double d = Math.random();
 
-            if (d < 0.5) {
+            if (d < INFECTION_PROBABILITY) {
                 matrix[i][j] = new InfectedCell();
             }
         }
