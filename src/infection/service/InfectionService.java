@@ -24,7 +24,7 @@ public class InfectionService {
     private Cell[][] matrix;
 
     public void init(int size) {
-        if (size <= 0 || size >= 1002 || ((size % 2) == 0)) {
+        if (size <= 0 || size >= 302 || ((size % 2) == 0)) {
             throw new IllegalArgumentException();
         }
 
