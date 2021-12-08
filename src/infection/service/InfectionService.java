@@ -70,7 +70,6 @@ public class InfectionService {
                     matrix[i][j] = this.migrateToAnotherCell(cell);
                     continue;
                 }
-                matrix[i][j] = cell;
 
                 if (!(cell instanceof InfectedCell)) {
                     continue;

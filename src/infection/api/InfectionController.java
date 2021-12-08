@@ -42,7 +42,6 @@ public class InfectionController {
         while (gridMatrix.getColumnConstraints().size() > 0) {
             gridMatrix.getColumnConstraints().remove(0);
         }
-//        gridMatrix.setAlignment(Pos.CENTER);
         gridMatrix.setAlignment(Pos.BOTTOM_LEFT);
 
         Cell[][] matrix = infectionService.getMatrix();
